@@ -60,18 +60,21 @@ export default function Home() {
       role: 'Lead Surveyor',
       image: 'https://placehold.co/400x400.png',
       hint: 'person portrait',
+      description: 'Con más de 15 años de experiencia, John lidera nuestro equipo de campo con una precisión inigualable y una profunda comprensión de los terrenos más desafiantes.'
     },
     {
       name: 'Jane Smith',
       role: 'GIS Specialist',
       image: 'https://placehold.co/400x400.png',
       hint: 'person portrait',
+      description: 'Jane transforma datos complejos en mapas claros y procesables, utilizando las últimas tecnologías GIS para proporcionar información geoespacial crítica.'
     },
     {
       name: 'Sam Wilson',
       role: 'Drone Pilot',
       image: 'https://placehold.co/400x400.png',
       hint: 'person portrait',
+      description: 'Sam es nuestro experto en levantamientos aéreos, pilotando drones de última generación para capturar datos topográficos con una eficiencia y seguridad excepcionales.'
     },
   ];
 
@@ -197,11 +200,18 @@ export default function Home() {
               {teamMembers.map((member, index) => (
                 <MotionCard 
                   key={index} 
-                  className="overflow-hidden text-center"
+                  className="overflow-hidden text-center flex flex-col"
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
                   viewport={{ once: true }}
+                  animate={{
+                    y: ["0%", "-2%", "0%"],
+                  }}
+                  whileHover={{
+                    scale: 1.02,
+                    boxShadow: "0px 10px 30px rgba(0,0,0,0.1)"
+                  }}
                 >
                   <CardContent className="p-0">
                     <Image
@@ -213,10 +223,13 @@ export default function Home() {
                       data-ai-hint={member.hint}
                     />
                   </CardContent>
-                  <CardHeader>
+                  <CardHeader className="flex-grow">
                     <CardTitle>{member.name}</CardTitle>
                     <p className="text-primary">{member.role}</p>
                   </CardHeader>
+                  <CardContent className="flex-grow">
+                    <p className="text-muted-foreground text-sm">{member.description}</p>
+                  </CardContent>
                 </MotionCard>
               ))}
             </div>
