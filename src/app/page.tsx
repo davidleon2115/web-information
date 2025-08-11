@@ -176,7 +176,7 @@ export default function Home() {
           </div>
         </motion.section>
 
-        <motion.section id="project-info" className="py-16 bg-card" variants={fadeIn} initial="initial" whileInView="animate" viewport={{ once: true }}>
+        <motion.section id="project-info" className="py-16 bg-card" variants={fadeIn} initial="initial" whileInView="animate">
           <div className="container">
             <h2 className="text-3xl font-bold text-center mb-10">Project Information</h2>
             <div className="grid gap-8 md:grid-cols-3 max-w-4xl mx-auto">
@@ -193,7 +193,7 @@ export default function Home() {
           </div>
         </motion.section>
 
-        <motion.section id="team" className="py-16" variants={fadeIn} initial="initial" whileInView="animate" viewport={{ once: true }}>
+        <motion.section id="team" className="py-16" variants={fadeIn} initial="initial" whileInView="animate">
           <div className="container">
             <h2 className="text-3xl font-bold text-center mb-10">Our Team</h2>
             <div className="grid gap-8 md:grid-cols-3 max-w-4xl mx-auto">
@@ -204,7 +204,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
-                  viewport={{ once: true }}
+                  
                   animate={{
                     y: ["0%", "-2%", "0%"],
                   }}
@@ -236,7 +236,7 @@ export default function Home() {
           </div>
         </motion.section>
 
-        <motion.section id="gallery" className="py-16 bg-card" variants={fadeIn} initial="initial" whileInView="animate" viewport={{ once: true }}>
+        <motion.section id="gallery" className="py-16 bg-card" variants={fadeIn} initial="initial" whileInView="animate">
           <div className="container">
             <h2 className="text-3xl font-bold text-center mb-10">Image Gallery</h2>
             <Carousel className="w-full max-w-4xl mx-auto" opts={{ loop: true }}>
@@ -264,7 +264,7 @@ export default function Home() {
           </div>
         </motion.section>
         
-        <motion.section id="mission-vision" className="py-16" initial="initial" whileInView="animate" viewport={{ once: true }}>
+        <motion.section id="mission-vision" className="py-16" initial="initial" whileInView="animate">
           <div className="container">
             <h2 className="text-3xl font-bold text-center mb-10">Misión y Visión</h2>
             <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
@@ -304,7 +304,7 @@ export default function Home() {
           </div>
         </motion.section>
 
-        <motion.section id="contact" className="py-16 bg-card" variants={fadeIn} initial="initial" whileInView="animate" viewport={{ once: true }}>
+        <motion.section id="contact" className="py-16 bg-card" variants={fadeIn} initial="initial" whileInView="animate">
           <div className="container">
             <ContactForm />
           </div>
