@@ -176,9 +176,9 @@ export default function Home() {
         <motion.section id="project-info" className="py-16 bg-card" variants={fadeIn} initial="initial" whileInView="animate" viewport={{ once: true }}>
           <div className="container">
             <h2 className="text-3xl font-bold text-center mb-10">Project Information</h2>
-            <div className="grid gap-8 md:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-3 max-w-4xl mx-auto">
               {projectInfo.map((item) => (
-                <div key={item.title} className="flex items-start gap-4">
+                <div key={item.title} className="flex flex-col items-center text-center gap-4">
                   <div className="flex-shrink-0">{item.icon}</div>
                   <div>
                     <h3 className="text-lg font-semibold">{item.title}</h3>
@@ -193,7 +193,7 @@ export default function Home() {
         <motion.section id="team" className="py-16" variants={fadeIn} initial="initial" whileInView="animate" viewport={{ once: true }}>
           <div className="container">
             <h2 className="text-3xl font-bold text-center mb-10">Our Team</h2>
-            <div className="grid gap-8 md:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-3 max-w-4xl mx-auto">
               {teamMembers.map((member, index) => (
                 <MotionCard 
                   key={index} 
