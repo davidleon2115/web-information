@@ -147,8 +147,8 @@ export default function Home() {
           <Image
             src="https://placehold.co/1920x1080.png"
             alt="Ultra modern buildings"
-            layout="fill"
-            objectFit="cover"
+            fill={true}
+            style={{objectFit: 'cover'}}
             className="z-0"
             data-ai-hint="modern buildings"
           />
@@ -251,16 +251,13 @@ export default function Home() {
           </div>
         </motion.section>
         
-        <motion.section id="mission-vision" className="py-16" variants={fadeIn} initial="initial" whileInView="animate" viewport={{ once: true }}>
+        <motion.section id="mission-vision" className="py-16" initial="initial" whileInView="animate" viewport={{ once: true }}>
           <div className="container">
             <h2 className="text-3xl font-bold text-center mb-10">Misión y Visión</h2>
-            <div className="grid gap-8 md:grid-cols-2">
+            <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
               <MotionCard
-                className="text-center flex flex-col items-center"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                viewport={{ once: true }}
+                className="text-center flex flex-col items-center p-6"
+                variants={fadeIn}
               >
                 <CardHeader>
                   <div className="flex flex-col items-center gap-2">
@@ -275,11 +272,8 @@ export default function Home() {
                 </CardContent>
               </MotionCard>
               <MotionCard
-                className="text-center flex flex-col items-center"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                viewport={{ once: true }}
+                className="text-center flex flex-col items-center p-6"
+                variants={fadeIn}
               >
                 <CardHeader>
                    <div className="flex flex-col items-center gap-2">
