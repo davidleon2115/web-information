@@ -1,3 +1,5 @@
+
+'use client';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -7,13 +9,34 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { Separator } from '@/components/ui/separator';
 import { Logo } from '@/components/logo';
-import { CalendarDays, MapPin, Users } from 'lucide-react';
+import { CalendarDays, MapPin, Users, Menu } from 'lucide-react';
 import { ProjectSummarizer } from '@/components/project-summarizer';
 import { ContactForm } from '@/components/contact-form';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { useState } from 'react';
+
+const fadeIn = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.8, ease: 'easeInOut' },
+};
+
+const MotionCard = motion(Card);
 
 export default function Home() {
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
+  const navLinks = [
+    { href: '#project-info', label: 'Project Info' },
+    { href: '#team', label: 'Team' },
+    { href: '#gallery', label: 'Gallery' },
+    { href: '#ai-summarizer', label: 'AI Summarizer' },
+    { href: '#contact', label: 'Contact' },
+  ];
+
   const projectInfo = [
     {
       icon: <MapPin className="h-6 w-6 text-primary" />,
@@ -32,6 +55,27 @@ export default function Home() {
     },
   ];
 
+  const teamMembers = [
+    {
+      name: 'John Doe',
+      role: 'Lead Surveyor',
+      image: 'https://placehold.co/400x400.png',
+      hint: 'person portrait',
+    },
+    {
+      name: 'Jane Smith',
+      role: 'GIS Specialist',
+      image: 'https://placehold.co/400x400.png',
+      hint: 'person portrait',
+    },
+    {
+      name: 'Sam Wilson',
+      role: 'Drone Pilot',
+      image: 'https://placehold.co/400x400.png',
+      hint: 'person portrait',
+    },
+  ];
+
   const galleryImages = [
     { src: 'https://placehold.co/800x600.png', alt: 'Surveying in a mountainous region', hint: 'surveying landscape' },
     { src: 'https://placehold.co/800x600.png', alt: 'Team using a total station', hint: 'surveying equipment' },
@@ -39,31 +83,95 @@ export default function Home() {
     { src: 'https://placehold.co/800x600.png', alt: 'Digital terrain model visualization', hint: 'digital map' },
     { src: 'https://placehold.co/800x600.png', alt: 'Construction site layout staking', hint: 'construction site' },
   ];
+  
+  const closeMenu = () => setMenuOpen(false);
+
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-background">
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center">
-          <div className="mr-4 flex items-center">
+        <div className="container flex h-16 items-center justify-between">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center"
+          >
             <Logo className="h-8 w-8 text-primary" />
             <span className="ml-2 text-xl font-bold">TopoWeb</span>
+          </motion.div>
+          <nav className="hidden md:flex items-center space-x-6">
+            {navLinks.map((link, index) => (
+               <motion.a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+              >
+                {link.label}
+              </motion.a>
+            ))}
+          </nav>
+          <div className="md:hidden">
+            <Sheet open={isMenuOpen} onOpenChange={setMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right">
+                <nav className="flex flex-col space-y-4 mt-8">
+                {navLinks.map((link) => (
+                    <a key={link.href} href={link.href} onClick={closeMenu} className="text-lg font-medium text-muted-foreground hover:text-primary">
+                        {link.label}
+                    </a>
+                ))}
+                </nav>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </header>
 
       <main className="flex-1">
-        <section className="py-20 text-center">
-          <div className="container">
-            <h1 className="text-5xl font-bold tracking-tight text-primary sm:text-6xl md:text-7xl">
+        <motion.section
+          className="relative h-[60vh] min-h-[400px] flex items-center justify-center text-center text-white"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <Image
+            src="https://placehold.co/1920x1080.png"
+            alt="Ultra modern buildings"
+            layout="fill"
+            objectFit="cover"
+            className="z-0"
+            data-ai-hint="modern buildings"
+          />
+          <div className="absolute inset-0 bg-black/60 z-10"></div>
+          <div className="container z-20">
+            <motion.h1
+              className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
               TopoWeb
-            </h1>
-            <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground sm:text-xl">
+            </motion.h1>
+            <motion.p
+              className="mt-4 max-w-2xl mx-auto text-lg sm:text-xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
               Precision Surveying for Modern Projects.
-            </p>
+            </motion.p>
           </div>
-        </section>
+        </motion.section>
 
-        <section id="project-info" className="py-16 bg-card">
+        <motion.section id="project-info" className="py-16 bg-card" variants={fadeIn} initial="initial" whileInView="animate" viewport={{ once: true }}>
           <div className="container">
             <h2 className="text-3xl font-bold text-center mb-10">Project Information</h2>
             <div className="grid gap-8 md:grid-cols-3">
@@ -78,9 +186,42 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
-        <section id="gallery" className="py-16">
+        <motion.section id="team" className="py-16" variants={fadeIn} initial="initial" whileInView="animate" viewport={{ once: true }}>
+          <div className="container">
+            <h2 className="text-3xl font-bold text-center mb-10">Our Team</h2>
+            <div className="grid gap-8 md:grid-cols-3">
+              {teamMembers.map((member, index) => (
+                <MotionCard 
+                  key={index} 
+                  className="overflow-hidden text-center"
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  <CardContent className="p-0">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      width={400}
+                      height={400}
+                      className="aspect-square w-full object-cover"
+                      data-ai-hint={member.hint}
+                    />
+                  </CardContent>
+                  <CardHeader>
+                    <CardTitle>{member.name}</CardTitle>
+                    <p className="text-primary">{member.role}</p>
+                  </CardHeader>
+                </MotionCard>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+
+        <motion.section id="gallery" className="py-16 bg-card" variants={fadeIn} initial="initial" whileInView="animate" viewport={{ once: true }}>
           <div className="container">
             <h2 className="text-3xl font-bold text-center mb-10">Image Gallery</h2>
             <Carousel className="w-full max-w-4xl mx-auto" opts={{ loop: true }}>
@@ -106,19 +247,19 @@ export default function Home() {
               <CarouselNext />
             </Carousel>
           </div>
-        </section>
+        </motion.section>
         
-        <section id="ai-summarizer" className="py-16 bg-card">
+        <motion.section id="ai-summarizer" className="py-16" variants={fadeIn} initial="initial" whileInView="animate" viewport={{ once: true }}>
           <div className="container">
             <ProjectSummarizer />
           </div>
-        </section>
+        </motion.section>
 
-        <section id="contact" className="py-16">
+        <motion.section id="contact" className="py-16 bg-card" variants={fadeIn} initial="initial" whileInView="animate" viewport={{ once: true }}>
           <div className="container">
             <ContactForm />
           </div>
-        </section>
+        </motion.section>
       </main>
 
       <footer className="py-6 border-t">
