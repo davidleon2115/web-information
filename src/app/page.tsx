@@ -14,7 +14,7 @@ import { CalendarDays, MapPin, Users, Menu, Flag, Target } from 'lucide-react';
 import { ContactForm } from '@/components/contact-form';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { useState } from 'react';
 
 const fadeIn = {
@@ -121,6 +121,9 @@ export default function Home() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right">
+                <SheetHeader>
+                  <SheetTitle className="sr-only">Menu</SheetTitle>
+                </SheetHeader>
                 <nav className="flex flex-col space-y-4 mt-8">
                 {navLinks.map((link) => (
                     <a key={link.href} href={link.href} onClick={closeMenu} className="text-lg font-medium text-muted-foreground hover:text-primary">
@@ -253,7 +256,7 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-center mb-10">Misión y Visión</h2>
             <div className="grid gap-8 md:grid-cols-2">
               <MotionCard
-                className="text-center"
+                className="text-center flex flex-col items-center"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -272,7 +275,7 @@ export default function Home() {
                 </CardContent>
               </MotionCard>
               <MotionCard
-                className="text-center"
+                className="text-center flex flex-col items-center"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
