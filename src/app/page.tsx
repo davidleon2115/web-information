@@ -10,8 +10,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { Logo } from '@/components/logo';
-import { CalendarDays, MapPin, Users, Menu } from 'lucide-react';
-import { ProjectSummarizer } from '@/components/project-summarizer';
+import { CalendarDays, MapPin, Users, Menu, Flag, Target } from 'lucide-react';
 import { ContactForm } from '@/components/contact-form';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -33,7 +32,7 @@ export default function Home() {
     { href: '#project-info', label: 'Project Info' },
     { href: '#team', label: 'Team' },
     { href: '#gallery', label: 'Gallery' },
-    { href: '#ai-summarizer', label: 'AI Summarizer' },
+    { href: '#mission-vision', label: 'Misión y Visión' },
     { href: '#contact', label: 'Contact' },
   ];
 
@@ -249,9 +248,49 @@ export default function Home() {
           </div>
         </motion.section>
         
-        <motion.section id="ai-summarizer" className="py-16" variants={fadeIn} initial="initial" whileInView="animate" viewport={{ once: true }}>
+        <motion.section id="mission-vision" className="py-16" variants={fadeIn} initial="initial" whileInView="animate" viewport={{ once: true }}>
           <div className="container">
-            <ProjectSummarizer />
+            <h2 className="text-3xl font-bold text-center mb-10">Misión y Visión</h2>
+            <div className="grid gap-8 md:grid-cols-2">
+              <MotionCard
+                className="text-center"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <CardHeader>
+                  <div className="flex flex-col items-center gap-2">
+                    <Flag className="w-8 h-8 text-primary" />
+                    <CardTitle>Nuestra Misión</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Proporcionar servicios de topografía de la más alta precisión y confiabilidad, utilizando tecnología de punta y un equipo de profesionales altamente calificados para garantizar el éxito de los proyectos de nuestros clientes.
+                  </p>
+                </CardContent>
+              </MotionCard>
+              <MotionCard
+                className="text-center"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                <CardHeader>
+                   <div className="flex flex-col items-center gap-2">
+                    <Target className="w-8 h-8 text-primary" />
+                    <CardTitle>Nuestra Visión</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Ser la empresa líder en soluciones topográficas innovadoras, reconocida por nuestra excelencia, integridad y compromiso con el desarrollo sostenible, transformando el paisaje de la ingeniería y la construcción.
+                  </p>
+                </CardContent>
+              </MotionCard>
+            </div>
           </div>
         </motion.section>
 
